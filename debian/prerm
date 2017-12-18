@@ -1,0 +1,10 @@
+#! /bin/sh
+
+if [ "$1" = "remove" ]; then
+    PID=$(status "stream-schedule-liquidsoap" 2>/dev/null | awk '/[0-9]$/ { print $NF }')
+    [ -z "$PID" ] || kill -HUP $PID
+fi
+
+exit 0
+
+#DEBHELPER#

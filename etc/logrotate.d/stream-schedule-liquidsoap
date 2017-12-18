@@ -1,0 +1,12 @@
+/var/log/stream-schedule/*liquidsoap*.log {
+	rotate 7
+	daily
+	compress
+	missingok
+	copytruncate
+#       we do not use built-in logging to catch script errors, 
+#       see https://github.com/savonet/liquidsoap/issues/363
+#	postrotate
+#	kill -USR1 `cat /var/run/stream-schedule/stream-schedule-liquidsoap.pid 2>/dev/null` 2>/dev/null || true
+#	endscript
+}

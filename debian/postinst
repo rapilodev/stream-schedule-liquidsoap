@@ -1,0 +1,46 @@
+#! /bin/sh
+
+if ! getent group audiostream >/dev/null; then
+        addgroup --system audiostream
+fi
+
+if ! getent passwd audiostream >/dev/null; then
+        adduser --system --ingroup audiostream --home /var/lib/audiostream audiostream
+fi
+
+# add groups to user
+addgroup audiostream pulse
+addgroup audiostream pulse-access
+addgroup audiostream audio
+
+if [ -d /var/lib/stream-schedule/ ]; then
+  chown audiostream:audiostream /var/lib/stream-schedule/
+  chmod 0750 /var/lib/audiostream/
+fi
+
+if [ -d /var/run/stream-schedule/ ]; then
+  chown audiostream:audiostream /var/run/stream-schedule/
+  chmod 0775 /var/run/stream-schedule/
+fi
+
+if [ -d /var/log/stream-schedule/ ]; then
+  chgrp audiostream /var/log/stream-schedule/
+  chmod 0775 /var/log/stream-schedule/
+fi
+
+# set group
+chgrp audiostream /etc/stream-schedule/liquidsoap/*.conf
+chgrp audiostream /etc/init/stream-schedule-liquidsoap.conf
+chgrp audiostream /etc/logrotate.d/stream-schedule-liquidsoap
+chmod 644 /etc/logrotate.d/stream-schedule-liquidsoap
+
+# reload service
+PID=$(status "stream-schedule-liquidsoap" 2>/dev/null | awk '/[0-9]$/ { print $NF }')
+[ -z "$PID" ] || kill -HUP $PID
+
+# restart liquidsoap
+initctl reload-configuration
+start stream-schedule-liquidsoap
+exit 0
+
+#DEBHELPER#

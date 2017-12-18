@@ -1,0 +1,8 @@
+#! /bin/sh -e
+
+PID=$(status "stream-schedule-liquidsoap" 2>/dev/null | awk '/[0-9]$/ { print $NF }')
+[ -z "$PID" ] || kill -HUP $PID
+
+exit 0
+
+#DEBHELPER#

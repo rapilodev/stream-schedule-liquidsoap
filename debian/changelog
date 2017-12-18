@@ -1,0 +1,24 @@
+stream-schedule-liquidsoap (0.01.0020) trusty; urgency=low
+  * fix stop runlevel 
+ -- Milan Chrobok <mc@radiopiloten.de>  Fri, 15 Nov 2017 12:04:09 +0200
+
+stream-schedule-liquidsoap (0.01.0019) trusty; urgency=low
+  * add peak and RMS for input and output 
+ -- Milan Chrobok <mc@radiopiloten.de>  Fri, 06 Jan 2017 12:04:09 +0200
+
+stream-schedule-liquidsoap (0.01.0018) trusty; urgency=low
+  * fix liquidsoap reload signal USR1 
+ -- Milan Chrobok <mc@radiopiloten.de>  Sun, 20 Nov 2016 12:04:09 +0200
+
+stream-schedule-liquidsoap (0.01.0017) trusty; urgency=low
+  * fix liquidsoap reload signal USR1 
+ -- Milan Chrobok <mc@radiopiloten.de>  Sun, 13 Nov 2016 12:04:09 +0200
+
+stream-schedule-liquidsoap (0.01.0013) trusty; urgency=low
+  * fix log append
+ -- Milan Chrobok <mc@radiopiloten.de>  Sun, 07 Nov 2016 12:04:09 +0200
+
+stream-schedule-liquidsoap (0.01.0012) trusty; urgency=low
+  * initial release
+ -- Milan Chrobok <mc@radiopiloten.de>  Wed, 02 Mar 2016 12:04:09 +0200
+

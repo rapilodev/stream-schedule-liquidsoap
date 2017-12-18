@@ -1,0 +1,18 @@
+Source: stream-schedule-liquidsoap
+Section: sound
+Priority: optional
+Maintainer: Milan Chrobok <mc@radiopiloten.de>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+Homepage: https://launchpad.net/~mc-1/+archive/stream-schedule
+
+Package: stream-schedule-liquidsoap
+Architecture: any
+Depends: ${misc:Depends}, 
+ liquidsoap, liquidsoap-plugin-pulseaudio, liquidsoap-plugin-alsa, liquidsoap-plugin-icecast, liquidsoap-plugin-ogg, liquidsoap-plugin-opus, liquidsoap-plugin-lame, liquidsoap-plugin-samplerate, liquidsoap-plugin-taglib, liquidsoap-plugin-xmlplaylist, liquidsoap-plugin-soundtouch, liquidsoap-plugin-mad, liquidsoap-plugin-ladspa, liquidsoap-plugin-flac, liquidsoap-plugin-faad, liquidsoap-plugin-lo, 
+ quelcom, 
+ festival,
+ upstart
+Description: liquidsoap service for stream scheduler
+ defines a upstart service to run liquidsoap with a config from /etc/stream-schedule/start.conf
+

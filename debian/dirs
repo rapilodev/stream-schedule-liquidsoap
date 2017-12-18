@@ -1,0 +1,3 @@
+var/lib/audiostream
+var/log/stream-schedule
+var/run/stream-schedule
