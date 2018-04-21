@@ -1,5 +1,25 @@
 #! /bin/sh
 
+isUpstart() {
+    /sbin/init --version 2>/dev/null | grep -q 'upstart'
+    #echo "result=$?"
+    if [ "$?" = "0" ]; then
+        return 0
+    else 
+        return 1
+    fi
+}
+
+isSystemd() {
+    /bin/systemctl 2>/dev/null | grep -q '\-\.mount'
+    #echo "result=$?"
+    if [ "$?" = "0" ]; then
+        return 0
+    else 
+        return 1
+    fi
+}
+
 if [ "$1" = "remove" ]; then
 
     if [ -e /etc/logrotate.d/stream-schedule-liquidsoap ]; then
@@ -21,11 +41,17 @@ if [ "$1" = "remove" ]; then
     if [ -e /var/log/stream-schedule/stream-schedule-liquidsoap.log ]; then
         rm -r /var/log/stream-schedule/stream-schedule-liquidsoap*
     fi
+fi
 
+if [ "$1" = "purge" ]; then
     if [ -e /etc/stream-schedule/liquidsoap/ ]; then
         rm -r /etc/stream-schedule/liquidsoap/
     fi
+fi
 
+if isSystemd; then
+	echo "reload systemd services"
+	systemctl daemon-reload
 fi
 
 exit 0;

@@ -1,5 +1,25 @@
 #! /bin/sh
 
+isUpstart() {
+    /sbin/init --version 2>/dev/null | grep -q 'upstart'
+    #echo "result=$?"
+    if [ "$?" = "0" ]; then
+        return 0
+    else 
+        return 1
+    fi
+}
+
+isSystemd() {
+    /bin/systemctl 2>/dev/null | grep -q '\-\.mount'
+    #echo "result=$?"
+    if [ "$?" = "0" ]; then
+        return 0
+    else 
+        return 1
+    fi
+}
+
 if ! getent group audiostream >/dev/null; then
         addgroup --system audiostream
 fi
@@ -34,13 +54,25 @@ chgrp audiostream /etc/init/stream-schedule-liquidsoap.conf
 chgrp audiostream /etc/logrotate.d/stream-schedule-liquidsoap
 chmod 644 /etc/logrotate.d/stream-schedule-liquidsoap
 
-# reload service
-PID=$(status "stream-schedule-liquidsoap" 2>/dev/null | awk '/[0-9]$/ { print $NF }')
-[ -z "$PID" ] || kill -HUP $PID
+chmod 0775 /bin/start-stream-schedule-liquidsoap.sh
 
-# restart liquidsoap
-initctl reload-configuration
-start stream-schedule-liquidsoap
+if isUpstart; then
+	echo "restart stream-schedule-liquidsoap upstart service"
+    PID=$(status "stream-schedule-liquidsoap" 2>/dev/null | awk '/[0-9]$/ { print $NF }')
+    [ -z "$PID" ] || kill -HUP $PID
+
+    # restart liquidsoap
+    initctl reload-configuration
+    start stream-schedule-liquidsoap
+fi
+
+if isSystemd; then
+	echo "restart stream-schedule-liquidsoap systemd service"
+    systemctl daemon-reload
+	systemctl enable stream-schedule-liquidsoap
+	systemctl start stream-schedule-liquidsoap
+fi
+
 exit 0
 
 #DEBHELPER#

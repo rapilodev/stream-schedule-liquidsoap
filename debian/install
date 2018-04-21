@@ -10,3 +10,5 @@ etc/stream-schedule/liquidsoap/sound-processing.conf
 etc/stream-schedule/liquidsoap/start.conf
 etc/init/stream-schedule-liquidsoap.conf
 etc/logrotate.d/stream-schedule-liquidsoap
+etc/systemd/system/stream-schedule-liquidsoap.service
+bin/start-stream-schedule-liquidsoap.sh

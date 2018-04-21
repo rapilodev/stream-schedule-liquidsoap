@@ -1,7 +1,35 @@
 #! /bin/sh -e
 
-PID=$(status "stream-schedule-liquidsoap" 2>/dev/null | awk '/[0-9]$/ { print $NF }')
-[ -z "$PID" ] || kill -HUP $PID
+isUpstart() {
+    /sbin/init --version 2>/dev/null | grep -q 'upstart'
+    #echo "result=$?"
+    if [ "$?" = "0" ]; then
+        return 0
+    else 
+        return 1
+    fi
+}
+
+isSystemd() {
+    /bin/systemctl 2>/dev/null | grep -q '\-\.mount'
+    #echo "result=$?"
+    if [ "$?" = "0" ]; then
+        return 0
+    else 
+        return 1
+    fi
+}
+
+if isUpstart; then
+    PID=$(status "stream-schedule-liquidsoap" 2>/dev/null | awk '/[0-9]$/ { print $NF }')
+    [ -z "$PID" ] || kill -HUP $PID
+fi
+
+if isSystemd; then
+	if systemctl is-active stream-schedule-liquidsoap; then
+    	systemctl stop stream-schedule-liquidsoap
+    fi
+fi
 
 exit 0
 

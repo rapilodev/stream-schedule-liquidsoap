@@ -1,3 +1,7 @@
+stream-schedule-liquidsoap (0.01.0033) xenial; urgency=low
+  * add systemd service
+ -- Milan Chrobok <mc@radiopiloten.de>  Fri, 15 Nov 2017 12:04:09 +0200
+
 stream-schedule-liquidsoap (0.01.0020) trusty; urgency=low
   * fix stop runlevel 
  -- Milan Chrobok <mc@radiopiloten.de>  Fri, 15 Nov 2017 12:04:09 +0200
