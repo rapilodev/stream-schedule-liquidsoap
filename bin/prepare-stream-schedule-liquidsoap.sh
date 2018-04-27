@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#    pkill -9 -f "/etc/stream-schedule/liquidsoap/start.conf"
+pkill -9 -f "/etc/stream-schedule/liquidsoap/start.conf"
 
 [ -d /var/run/stream-schedule ] || mkdir /var/run/stream-schedule
 chmod 775 /var/run/stream-schedule
