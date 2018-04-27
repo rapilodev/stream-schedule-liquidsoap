@@ -11,4 +11,4 @@ etc/stream-schedule/liquidsoap/start.conf
 etc/init/stream-schedule-liquidsoap.conf
 etc/logrotate.d/stream-schedule-liquidsoap
 etc/systemd/system/stream-schedule-liquidsoap.service
-bin/start-stream-schedule-liquidsoap.sh
+bin/prepare-stream-schedule-liquidsoap.sh

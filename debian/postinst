@@ -54,7 +54,7 @@ chgrp audiostream /etc/init/stream-schedule-liquidsoap.conf
 chgrp audiostream /etc/logrotate.d/stream-schedule-liquidsoap
 chmod 644 /etc/logrotate.d/stream-schedule-liquidsoap
 
-chmod 0775 /bin/start-stream-schedule-liquidsoap.sh
+chmod 0775 /bin/prepare-stream-schedule-liquidsoap.sh
 
 if isUpstart; then
 	echo "restart stream-schedule-liquidsoap upstart service"

@@ -4,13 +4,18 @@ Description=audio stream schedule liquidsoap
 After=network.target
 
 [Service]
-Type=simple
-Restart=on-failure
-RestartSec=3
+Restart=always
+RestartSec=1s
+StartLimitInterval=0
 
+User=audiostream
 Group=audiostream
-ExecStart=/bin/start-stream-schedule-liquidsoap.sh
-ExecReload=/bin/kill -HUP $(cat /var/run/stream-schedule/stream-schedule-liquidsoap.pid)
+
+PermissionsStartOnly=true
+
+ExecStartPre=/bin/prepare-stream-schedule-liquidsoap.sh >>/var/log/stream-schedule/liquidsoap.log 2>&1
+ExecStart=/bin/sh -c 'liquidsoap /etc/stream-schedule/liquidsoap/start.conf >>/var/log/stream-schedule/liquidsoap.log 2>&1'
+ExecReload=/bin/kill -HUP $(cat /var/run/stream-schedule/stream-schedule-liquidsoap.pid) >>/var/log/stream-schedule/liquidsoap.log 2>&1
 
 [Install]
 WantedBy=multi-user.target

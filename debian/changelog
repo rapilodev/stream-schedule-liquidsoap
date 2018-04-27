@@ -1,4 +1,12 @@
-stream-schedule-liquidsoap (0.01.0033) xenial; urgency=low
+stream-schedule-liquidsoap (0.01.0036) xenial; urgency=low
+  * use a separate clock for icecast stream
+ -- Milan Chrobok <mc@radiopiloten.de>  Sat, 28 Apr 2018 12:04:09 +0200
+
+stream-schedule-liquidsoap (0.01.0035) xenial; urgency=low
+  * fix systemd stop 
+ -- Milan Chrobok <mc@radiopiloten.de>  Sat, 28 Apr 2018 12:04:09 +0200
+
+stream-schedule-liquidsoap (0.01.0034) xenial; urgency=low
   * add systemd service
  -- Milan Chrobok <mc@radiopiloten.de>  Fri, 15 Nov 2017 12:04:09 +0200
 
