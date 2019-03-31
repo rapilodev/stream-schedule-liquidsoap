@@ -1,4 +1,19 @@
-stream-schedule-liquidsoap (0.01.0038) xenial; urgency=low
+stream-schedule-liquidsoap (0.02) xenial; urgency=low
+  * restart liquidsoap if triggerRestartFile is touched
+  * update start script
+  * set rms window to 10 seconds
+  * update start script
+  * set rms window to 10 seconds
+  * support flac and mp3 stream output
+  * set 192K for ogg output
+  * prepare flac or mp3 output
+  * set input stream buffer to 40 seconds
+  * support archiving wav and mp3
+  * set vorbis rate to 192k
+
+ -- Milan Chrobok <mc@radiopiloten.de>  Sun, 30 Mar 2019 12:04:09 +0200
+
+stream-schedule-liquidsoap (0.01.0039) xenial; urgency=low
   * use a separate clock for icecast stream
  -- Milan Chrobok <mc@radiopiloten.de>  Sat, 28 Apr 2018 12:04:09 +0200
 
