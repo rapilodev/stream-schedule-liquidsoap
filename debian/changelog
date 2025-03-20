@@ -1,3 +1,7 @@
+stream-schedule-liquidsoap (0.3) noble; urgency=low
+  * update for noble
+ -- Milan Chrobok <mc@radiopiloten.de>  Thu, 20 Mar 2025 23:04:09 +0200
+  
 stream-schedule-liquidsoap (0.2.2) focal; urgency=low
   * update debian files
  -- Milan Chrobok <mc@radiopiloten.de>  Sun, 09 May 2021 12:04:09 +0200
